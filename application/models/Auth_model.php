@@ -244,44 +244,6 @@ class Auth_model extends CI_Model {
         }
     }
 
-    public function getIsAdmin($id)
-    {
-        $config = $this->config->item('admin_access_level');
-
-        $qq = $this->auth->select('gmlevel')->where('id', $this->session->userdata('wow_sess_id'))->get('account_access');
-
-        if(!$qq->row('gmlevel'))
-            return false;
-        else
-        {
-            if($qq->row('gmlevel') >= $config)
-                return true;
-            else
-            {
-                return false;
-            }
-        }
-    }
-
-    public function getIsModerator($id)
-    {
-        $config = $this->config->item('mod_access_level');
-
-        $qq = $this->auth->select('gmlevel')->where('id', $this->session->userdata('wow_sess_id'))->get('account_access');
-
-        if(!$qq->row('gmlevel'))
-            return false;
-        else
-        {
-            if($qq->row('gmlevel') >= $config)
-                return true;
-            else
-            {
-                return false;
-            }
-        }
-    }
-
     public function getMaintenancePermission()
     {
         $config = $this->config->item('mod_access_level');

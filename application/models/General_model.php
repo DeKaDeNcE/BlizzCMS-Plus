@@ -555,4 +555,14 @@ class General_model extends CI_Model {
         return $this->db->select('*')->where('child', $id)->get('menu');
     }
 
+    public function updateActivity($id)
+	{
+		date_default_timezone_set($this->config->item('timezone'));
+		$update = array(
+			'lastvisit' => time() + 30*60,
+		);
+
+		$this->db->where('id', $id)->update('users', $update);
+		return true;
+	}
 }

@@ -96,10 +96,13 @@
         </div>
         <div class="uk-card uk-card-forum uk-margin-small">
           <div class="uk-card-header">
-            <h3 class="uk-card-title"><i class="fas fa-users"></i> <?= $this->lang->line('forum_whos_online'); ?></h3>
+            <h3 class="uk-card-title"><i class="fas fa-users"></i> <?= $this->lang->line('forum_whos_online'); ?> <?= time() ?></h3>
           </div>
           <div class="uk-card-body">
-            <p class="uk-margin-remove">0 users active in the past 15 minutes (0 members, 0 of whom are invisible, and 0 guests).</p>
+			  <?php foreach($this->forum_model->getLastActivity()->result() as $activity) { ?>
+				  <p class="uk-margin-remove"><?= $activity->username ?></p>
+				  <p class="uk-margin-remove">0 users active in the past 15 minutes (0 members, 0 of whom are invisible, and 0 guests).</p>
+			  <?php } ?>
             <hr class="uk-hr uk-margin">
             <div class="uk-grid uk-grid-medium uk-child-width-auto uk-flex-center" data-uk-grid>
               <div>

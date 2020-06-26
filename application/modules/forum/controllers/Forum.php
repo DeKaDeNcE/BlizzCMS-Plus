@@ -43,6 +43,9 @@ class Forum extends MX_Controller {
         $this->load->model('forum_model');
         $this->load->model('logs_model', 'logs'); // Logs System
 
+		if($this->wowauth->isLogged())
+			$this->wowgeneral->updateActivity($this->session->userdata('wow_sess_id'));
+
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
 

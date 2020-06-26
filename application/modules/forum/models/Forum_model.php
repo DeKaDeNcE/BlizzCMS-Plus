@@ -227,4 +227,9 @@ class Forum_model extends CI_Model {
       );
       $this->db->insert('mod_report');
     }
+
+    public function getLastActivity()
+	{
+		return $this->db->query("select * from users where lastvisit > (CURRENT_TIMESTAMP + 30)");
+	}
 }

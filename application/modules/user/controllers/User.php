@@ -42,6 +42,9 @@ class User extends MX_Controller {
         parent::__construct();
         $this->load->model('user_model');
 
+        if($this->wowauth->isLogged())
+        	$this->wowgeneral->updateActivity($this->session->userdata('wow_sess_id'));
+
         if (!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
     }

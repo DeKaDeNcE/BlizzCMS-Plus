@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Write the name of your website this will appear by default.
  *
 */
-$config['website_name'] = '';
+$config['website_name'] = 'localhost';
 
 /**
  *
@@ -17,7 +17,7 @@ $config['website_name'] = '';
  * http://php.net/manual/en/timezones.php
  *
 */
-$config['timezone'] = 'GMT';
+$config['timezone'] = 'Europe/Madrid';
 
 /**
  *
@@ -35,7 +35,7 @@ $config['maintenance_mode'] = '0';
  * Write the invitation of your discord channel.
  *
 */
-$config['discord_invitation'] = '';
+$config['discord_invitation'] = '213123';
 
 /**
  *
@@ -44,7 +44,7 @@ $config['discord_invitation'] = '';
  * Write the realmlist used on your server to publish it on the website.
  *
 */
-$config['realmlist'] = '';
+$config['realmlist'] = 'localhsot';
 
 /**
  * Emulator Supported
@@ -72,7 +72,7 @@ $config['realmlist'] = '';
  * 8 = Battle for Azeroth
  *
 */
-$config['expansion'] = '';
+$config['expansion'] = '3';
 
 /**
  *
@@ -104,4 +104,4 @@ $config['social_youtube'] = '';
  * Warning: Don't change this configuration.
  *
 */
-$config['migrate_status'] = '1';
+$config['migrate_status'] = '0';
