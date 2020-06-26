@@ -18,7 +18,7 @@
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
-              <?php if (!$this->wowauth->isLogged()): ?>
+              <?php if (!is_logged()): ?>
               <?php if($this->wowmodule->getRegisterStatus() == '1'): ?>
               <li class="uk-visible@m"><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i>&nbsp;<?= $this->lang->line('button_register'); ?></a></li>
               <?php endif; ?>
@@ -26,7 +26,7 @@
               <li class="uk-visible@m"><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= $this->lang->line('button_login'); ?></a></li>
               <?php endif; ?>
               <?php endif; ?>
-              <?php if ($this->wowauth->isLogged()): ?>
+              <?php if (is_logged()): ?>
               <li class="uk-visible@m">
                 <a href="#">
                   <?php if($this->wowgeneral->getUserInfoGeneral($this->session->userdata('wow_sess_id'))->num_rows()): ?>
@@ -38,15 +38,15 @@
                 </a>
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <?php if ($this->wowauth->isLogged()): ?>
+                    <?php if (is_logged()): ?>
                     <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
                     <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
                     <?php endif; ?>
-                    <?php if($this->wowauth->getIsModerator($this->session->userdata('wow_sess_gmlevel'))): ?>
+                    <?php if(is_authorized('mod')): ?>
                     <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= $this->lang->line('button_mod_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php if($this->wowmodule->getACPStatus() == '1'): ?>
-                    <?php if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel'))): ?>
+                    <?php if(is_authorized('acp')): ?>
                     <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php endif; ?>
@@ -121,7 +121,7 @@
             <a class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon href="#mobile" uk-toggle></a>
           </div>
           <div class="uk-navbar-right">
-            <?php if ($this->wowauth->isLogged()): ?>
+            <?php if (is_logged()): ?>
             <div class="uk-navbar-item">
               <ul class="uk-subnav uk-subnav-divider subnav-points">
                 <li><span uk-tooltip="title:<?=$this->lang->line('panel_dp'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->wowgeneral->getCharDPTotal($this->session->userdata('wow_sess_id')); ?></li>
@@ -136,7 +136,7 @@
             <button class="uk-offcanvas-close" type="button" uk-close></button>
             <div class="uk-panel">
               <p class="uk-logo uk-text-center uk-margin-small"><?= $this->config->item('website_name'); ?></p>
-              <?php if ($this->wowauth->isLogged()): ?>
+              <?php if (is_logged()): ?>
               <div class="uk-padding-small uk-padding-remove-vertical uk-margin-small uk-text-center">
                 <?php if($this->wowgeneral->getUserInfoGeneral($this->session->userdata('wow_sess_id'))->num_rows()): ?>
                 <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->session->userdata('wow_sess_id')))); ?>" width="36" height="36" alt="Avatar">
@@ -147,7 +147,7 @@
               </div>
               <?php endif; ?>
               <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-                <?php if (!$this->wowauth->isLogged()): ?>
+                <?php if (!is_logged()): ?>
                 <?php if($this->wowmodule->getRegisterStatus() == '1'): ?>
                 <li><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></a></li>
                 <?php endif; ?>
@@ -155,12 +155,12 @@
                 <li><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a></li>
                 <?php endif; ?>
                 <?php endif; ?>
-                <?php if ($this->wowauth->isLogged()): ?>
+                <?php if (is_logged()): ?>
                 <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
                 <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
                 <?php endif; ?>
                 <?php if($this->wowmodule->getACPStatus() == '1'): ?>
-                <?php if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel'))): ?>
+                <?php if(is_authorized('acp')): ?>
                 <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                 <?php endif; ?>
                 <?php endif; ?>

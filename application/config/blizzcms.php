@@ -72,7 +72,7 @@ $config['realmlist'] = 'localhsot';
  * 8 = Battle for Azeroth
  *
 */
-$config['expansion'] = '3';
+$config['expansion'] = '8';
 
 /**
  *
