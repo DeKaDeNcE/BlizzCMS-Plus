@@ -98,7 +98,7 @@ $autoload['drivers'] = array('cache');
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'file', 'text','form', 'html', 'cms');
+$autoload['helper'] = array('url', 'file', 'text', 'form', 'html', 'cms');
 
 /*
 | -------------------------------------------------------------------
@@ -147,9 +147,9 @@ $autoload['language'] = array('general', 'notification', 'admin');
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $models = array(
-	'auth_model'	=> 'wowauth',
+	'auth_model' => 'wowauth',
 	'general_model' => 'wowgeneral',
-	'realm_model'	=> 'wowrealm',
-	'module_model'  => 'wowmodule'
+	'realm_model' => 'wowrealm',
+	'module_model' => 'wowmodule'
 );
 $autoload['model'] = array($models);

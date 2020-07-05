@@ -5,7 +5,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> '',
+	'dsn' => '',
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '22032010',
@@ -27,7 +27,7 @@ $db['default'] = array(
 );
 
 $db['auth'] = array(
-	'dsn'	=> '',
+	'dsn' => '',
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '22032010',

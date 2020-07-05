@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * BlizzCMS
  *
@@ -34,33 +35,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @since   Version 1.0.1
  * @filesource
  */
+class Changelogs extends MX_Controller
+{
 
-class Changelogs extends MX_Controller {
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('changelogs_model');
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->load->model('changelogs_model');
+		if (!ini_get('date.timezone'))
+			date_default_timezone_set($this->config->item('timezone'));
 
-        if(!ini_get('date.timezone'))
-           date_default_timezone_set($this->config->item('timezone'));
+		if (!$this->wowgeneral->getMaintenance())
+			redirect(base_url('maintenance'), 'refresh');
 
-        if(!$this->wowgeneral->getMaintenance())
-            redirect(base_url('maintenance'),'refresh');
+		if (!$this->wowmodule->getChangelogsStatus())
+			redirect(base_url(), 'refresh');
 
-        if (!$this->wowmodule->getChangelogsStatus())
-            redirect(base_url(),'refresh');
+		if (!$this->wowauth->isLogged())
+			redirect(base_url('login'), 'refresh');
+	}
 
-        if(!$this->wowauth->isLogged())
-            redirect(base_url('login'),'refresh');
-    }
+	public function index()
+	{
+		$data = array(
+			'pagetitle' => $this->lang->line('tab_changelogs'),
+		);
 
-    public function index()
-    {
-        $data = array(
-            'pagetitle' => $this->lang->line('tab_changelogs'),
-        );
-
-        $this->template->build('index', $data);
-    }
+		$this->template->build('index', $data);
+	}
 }

@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Pagination Config
  *
- * Applying codeigniter's standard pagination config with twitter 
+ * Applying codeigniter's standard pagination config with twitter
  * bootstrap stylings
  *
  * @author      TechArise Team

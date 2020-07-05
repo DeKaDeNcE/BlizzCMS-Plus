@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * Used by Metatags, Open Graph and Twitter Card
  *
-*/
+ */
 $config['seo_title'] = '';
 
 /**
@@ -16,7 +16,7 @@ $config['seo_title'] = '';
  *
  * Used by Metatags, Open Graph and Twitter Card
  *
-*/
+ */
 $config['seo_imgurl'] = '';
 
 /**
@@ -26,7 +26,7 @@ $config['seo_imgurl'] = '';
  * TRUE = Enable
  * FALSE = Disabled
  *
-*/
+ */
 $config['seo_meta_enable'] = FALSE;
 
 /**
@@ -35,7 +35,7 @@ $config['seo_meta_enable'] = FALSE;
  *
  * Used by Metatags, Open Graph and Twitter Card
  *
-*/
+ */
 $config['seo_meta_desc'] = '';
 
 /**
@@ -44,7 +44,7 @@ $config['seo_meta_desc'] = '';
  *
  * Used only Metatags
  *
-*/
+ */
 $config['seo_meta_keywords'] = '';
 
 /**
@@ -54,7 +54,7 @@ $config['seo_meta_keywords'] = '';
  * TRUE = Enable
  * FALSE = Disabled
  *
-*/
+ */
 $config['seo_twitter_enable'] = FALSE;
 
 /**
@@ -64,7 +64,7 @@ $config['seo_twitter_enable'] = FALSE;
  * TRUE = Enable
  * FALSE = Disabled
  *
-*/
+ */
 $config['seo_og_enable'] = FALSE;
 
 /**
@@ -74,7 +74,7 @@ $config['seo_og_enable'] = FALSE;
  * TRUE = Enable
  * FALSE = Disabled
  *
-*/
+ */
 $config['seo_robots_enable'] = TRUE;
 
 /**
@@ -89,7 +89,7 @@ $config['seo_robots_enable'] = TRUE;
  * 4 => Avoid indexing and tracking.
  *
  *
-*/
+ */
 $config['seo_robots_config'] = 1;
 
 /**
@@ -99,5 +99,5 @@ $config['seo_robots_config'] = 1;
  * TRUE = Enable
  * FALSE = Disabled
  *
-*/
+ */
 $config['seo_meta_viewport'] = FALSE;

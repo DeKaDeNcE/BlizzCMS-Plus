@@ -35,29 +35,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @since   Version 1.0.1
  * @filesource
  */
+class General extends CI_Controller
+{
 
-class General extends CI_Controller {
+	public function __construct()
+	{
+		parent::__construct();
+	}
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
+	public function error404()
+	{
+		$data = array(
+			'pagetitle' => $this->lang->line('tab_error'),
+		);
 
-    public function error404()
-    {
-        $data = array(
-            'pagetitle' => $this->lang->line('tab_error'),
-        );
+		$this->template->build('404', $data);
+	}
 
-        $this->template->build('404', $data);
-    }
+	public function maintenance()
+	{
+		$data = array(
+			'pagetitle' => $this->lang->line('tab_maintenance'),
+		);
 
-    public function maintenance()
-    {
-        $data = array(
-            'pagetitle' => $this->lang->line('tab_maintenance'),
-        );
-
-        $this->template->build('maintenance', $data);
-    }
+		$this->template->build('maintenance', $data);
+	}
 }

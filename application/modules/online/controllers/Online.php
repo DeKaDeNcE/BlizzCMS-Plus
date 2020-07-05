@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * BlizzCMS
  *
@@ -34,28 +35,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @since   Version 1.0.1
  * @filesource
  */
+class Online extends MX_Controller
+{
 
-class Online extends MX_Controller {
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('online_model');
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->load->model('online_model');
+		if (!ini_get('date.timezone'))
+			date_default_timezone_set($this->config->item('timezone'));
 
-        if(!ini_get('date.timezone'))
-           date_default_timezone_set($this->config->item('timezone'));
+		if (!$this->wowgeneral->getMaintenance())
+			redirect(base_url('maintenance'), 'refresh');
+	}
 
-        if(!$this->wowgeneral->getMaintenance())
-            redirect(base_url('maintenance'),'refresh');
-    }
+	public function index()
+	{
+		$data = array(
+			'pagetitle' => $this->lang->line('tab_online'),
+			'realms' => $this->wowrealm->getRealms()->result()
+		);
 
-    public function index()
-    {
-        $data = array(
-            'pagetitle' => $this->lang->line('tab_online'),
-            'realms' => $this->wowrealm->getRealms()->result()
-        );
-
-        $this->template->build('index', $data);
-    }
+		$this->template->build('index', $data);
+	}
 }

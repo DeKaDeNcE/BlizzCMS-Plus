@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * BlizzCMS
  *
@@ -34,206 +35,203 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @since   Version 1.0.1
  * @filesource
  */
+class User extends MX_Controller
+{
 
-class User extends MX_Controller {
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('user_model');
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->load->model('user_model');
+		if ($this->wowauth->isLogged())
+			$this->wowgeneral->updateActivity($this->session->userdata('wow_sess_id'));
 
-        if($this->wowauth->isLogged())
-        	$this->wowgeneral->updateActivity($this->session->userdata('wow_sess_id'));
+		if (!ini_get('date.timezone'))
+			date_default_timezone_set($this->config->item('timezone'));
+	}
 
-        if (!ini_get('date.timezone'))
-           date_default_timezone_set($this->config->item('timezone'));
-    }
+	public function login()
+	{
+		if (!$this->wowmodule->getLoginStatus())
+			redirect(base_url(), 'refresh');
 
-    public function login()
-    {
-        if (!$this->wowmodule->getLoginStatus())
-            redirect(base_url(),'refresh');
-
-        if ($this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
+		if ($this->wowauth->isLogged())
+			redirect(base_url(), 'refresh');
 
 
-        if ($this->wowgeneral->getExpansionAction() == 1)
-        {
-            if($this->wowgeneral->getEmulatorAction() == 1){
-                $data = array(
-                    'pagetitle' => $this->lang->line('tab_login'),
-                    'recapKey' => $this->config->item('recaptcha_sitekey'),
-                    'lang' => $this->lang->lang(),
-                );
-    
-                $this->template->build('login2', $data);
-            }else{
-            
-                $data = array(
-                'pagetitle' => $this->lang->line('tab_login'),
-                'recapKey' => $this->config->item('recaptcha_sitekey'),
-                'lang' => $this->lang->lang(),
-            );
-                $this->template->build('login1', $data);
-            }
-        }
-        else
-        {
-            $data = array(
-                'pagetitle' => $this->lang->line('tab_login'),
-                'recapKey' => $this->config->item('recaptcha_sitekey'),
-                'lang' => $this->lang->lang(),
-            );
+		if ($this->wowgeneral->getExpansionAction() == 1) {
+			if ($this->wowgeneral->getEmulatorAction() == 1) {
+				$data = array(
+					'pagetitle' => $this->lang->line('tab_login'),
+					'recapKey' => $this->config->item('recaptcha_sitekey'),
+					'lang' => $this->lang->lang(),
+				);
 
-            $this->template->build('login2', $data);
-        }
-    }
+				$this->template->build('login2', $data);
+			} else {
 
-    public function verify1()
-    {
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-        echo $this->user_model->checklogin($username, $password);
-    }
+				$data = array(
+					'pagetitle' => $this->lang->line('tab_login'),
+					'recapKey' => $this->config->item('recaptcha_sitekey'),
+					'lang' => $this->lang->lang(),
+				);
+				$this->template->build('login1', $data);
+			}
+		} else {
+			$data = array(
+				'pagetitle' => $this->lang->line('tab_login'),
+				'recapKey' => $this->config->item('recaptcha_sitekey'),
+				'lang' => $this->lang->lang(),
+			);
 
-    public function verify2()
-    {
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
-        echo $this->user_model->checkloginbattle($email, $password);
-    }
+			$this->template->build('login2', $data);
+		}
+	}
 
-    public function register()
-    {
-        if (!$this->wowgeneral->getMaintenance())
-            redirect(base_url('maintenance'),'refresh');
+	public function verify1()
+	{
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		echo $this->user_model->checklogin($username, $password);
+	}
 
-        if (!$this->wowmodule->getRegisterStatus())
-            redirect(base_url(),'refresh');
+	public function verify2()
+	{
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
+		echo $this->user_model->checkloginbattle($email, $password);
+	}
 
-        if ($this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
+	public function register()
+	{
+		if (!$this->wowgeneral->getMaintenance())
+			redirect(base_url('maintenance'), 'refresh');
 
-        $data = array(
-            'pagetitle' => $this->lang->line('tab_register'),
-            'recapKey' => $this->config->item('recaptcha_sitekey'),
-            'lang' => $this->lang->lang(),
-        );
+		if (!$this->wowmodule->getRegisterStatus())
+			redirect(base_url(), 'refresh');
 
-        $this->template->build('register', $data);
-    }
+		if ($this->wowauth->isLogged())
+			redirect(base_url(), 'refresh');
 
-    public function newaccount()
-    {
-        $username = $this->input->post('username');
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
-        $repassword = $this->input->post('repassword');
-        echo $this->user_model->insertRegister($username, $email, $password, $repassword);
-    }
+		$data = array(
+			'pagetitle' => $this->lang->line('tab_register'),
+			'recapKey' => $this->config->item('recaptcha_sitekey'),
+			'lang' => $this->lang->lang(),
+		);
 
-    public function logout()
-    {
-        $this->wowauth->logout();
-    }
+		$this->template->build('register', $data);
+	}
 
-    public function recovery()
-    {
-        if (!$this->wowgeneral->getMaintenance())
-            redirect(base_url('maintenance'),'refresh');
+	public function newaccount()
+	{
+		$username = $this->input->post('username');
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
+		$repassword = $this->input->post('repassword');
+		echo $this->user_model->insertRegister($username, $email, $password, $repassword);
+	}
 
-        if (!$this->wowmodule->getRecoveryStatus())
-            redirect(base_url(),'refresh');
+	public function logout()
+	{
+		$this->wowauth->logout();
+	}
 
-        if ($this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
+	public function recovery()
+	{
+		if (!$this->wowgeneral->getMaintenance())
+			redirect(base_url('maintenance'), 'refresh');
 
-        $data = array(
-            'pagetitle' => $this->lang->line('tab_reset'),
-            'recapKey' => $this->config->item('recaptcha_sitekey'),
-            'lang' => $this->lang->lang(),
-        );
+		if (!$this->wowmodule->getRecoveryStatus())
+			redirect(base_url(), 'refresh');
 
-        $this->template->build('recovery', $data);
-    }
+		if ($this->wowauth->isLogged())
+			redirect(base_url(), 'refresh');
 
-    public function forgotpassword()
-    {
-        $username = $this->input->post('username');
-        $email = $this->input->post('email');
-        echo $this->user_model->sendpassword($username, $email);
-    }
+		$data = array(
+			'pagetitle' => $this->lang->line('tab_reset'),
+			'recapKey' => $this->config->item('recaptcha_sitekey'),
+			'lang' => $this->lang->lang(),
+		);
 
-    public function activate($key)
-    {
-        echo $this->user_model->activateAccount($key);
-    }
+		$this->template->build('recovery', $data);
+	}
 
-    public function panel()
-    {
-        if (!$this->wowgeneral->getMaintenance())
-            redirect(base_url(),'refresh');
+	public function forgotpassword()
+	{
+		$username = $this->input->post('username');
+		$email = $this->input->post('email');
+		echo $this->user_model->sendpassword($username, $email);
+	}
 
-        if (!$this->wowmodule->getUCPStatus())
-            redirect(base_url(),'refresh');
+	public function activate($key)
+	{
+		echo $this->user_model->activateAccount($key);
+	}
 
-        if (!$this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
+	public function panel()
+	{
+		if (!$this->wowgeneral->getMaintenance())
+			redirect(base_url(), 'refresh');
 
-        $data = array(
-            'pagetitle' => $this->lang->line('tab_account'),
-            'lang' => $this->lang->lang(),
-        );
+		if (!$this->wowmodule->getUCPStatus())
+			redirect(base_url(), 'refresh');
 
-        $this->template->build('panel', $data);
-    }
+		if (!$this->wowauth->isLogged())
+			redirect(base_url(), 'refresh');
 
-    public function settings()
-    {
-        if (!$this->wowgeneral->getMaintenance())
-            redirect(base_url(),'refresh');
+		$data = array(
+			'pagetitle' => $this->lang->line('tab_account'),
+			'lang' => $this->lang->lang(),
+		);
 
-        if (!$this->wowmodule->getUCPStatus())
-            redirect(base_url(),'refresh');
+		$this->template->build('panel', $data);
+	}
 
-        if (!$this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
+	public function settings()
+	{
+		if (!$this->wowgeneral->getMaintenance())
+			redirect(base_url(), 'refresh');
 
-        $data = array(
-            'pagetitle' => $this->lang->line('tab_account'),
-            'lang' => $this->lang->lang(),
-        );
+		if (!$this->wowmodule->getUCPStatus())
+			redirect(base_url(), 'refresh');
 
-        $this->template->build('settings', $data);
-    }
+		if (!$this->wowauth->isLogged())
+			redirect(base_url(), 'refresh');
 
-    public function newusername()
-    {
-        $username = $this->input->post('newusername');
-        $password = $this->input->post('password');
-        echo $this->user_model->changeUsername($username, $password);
-    }
+		$data = array(
+			'pagetitle' => $this->lang->line('tab_account'),
+			'lang' => $this->lang->lang(),
+		);
 
-    public function newpass()
-    {
-        $oldpass = $this->input->post('oldpass');
-        $newpass = $this->input->post('newpass');
-        $renewpass = $this->input->post('renewpass');
-        echo $this->user_model->changePassword($oldpass, $newpass, $renewpass);
-    }
+		$this->template->build('settings', $data);
+	}
 
-    public function newemail()
-    {
-        $newemail = $this->input->post('newemail');
-        $renewemail = $this->input->post('renewemail');
-        $password = $this->input->post('password');
-        echo $this->user_model->changeEmail($newemail, $renewemail, $password);
-    }
+	public function newusername()
+	{
+		$username = $this->input->post('newusername');
+		$password = $this->input->post('password');
+		echo $this->user_model->changeUsername($username, $password);
+	}
 
-    public function newavatar()
-    {
-        $avatar = $this->input->post('avatar');
-        echo $this->user_model->changeAvatar($avatar);
-    }
+	public function newpass()
+	{
+		$oldpass = $this->input->post('oldpass');
+		$newpass = $this->input->post('newpass');
+		$renewpass = $this->input->post('renewpass');
+		echo $this->user_model->changePassword($oldpass, $newpass, $renewpass);
+	}
+
+	public function newemail()
+	{
+		$newemail = $this->input->post('newemail');
+		$renewemail = $this->input->post('renewemail');
+		$password = $this->input->post('password');
+		echo $this->user_model->changeEmail($newemail, $renewemail, $password);
+	}
+
+	public function newavatar()
+	{
+		$avatar = $this->input->post('avatar');
+		echo $this->user_model->changeAvatar($avatar);
+	}
 }

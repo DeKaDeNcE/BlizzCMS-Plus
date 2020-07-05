@@ -88,9 +88,7 @@ class Permissions
 			foreach ($query->result_array() as $row) {
 				if ($category_perms = $this->permissions_from_category($row['category'])) {
 					$permissions[$row['category']] = $category_perms;
-				}
-				else
-				{
+				} else {
 					$permissions[$row['category']] = 'N/A';
 				}
 			}

@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Check the available currencies in:
  * https://developer.paypal.com/docs/classic/api/currency_codes/
  *
-*/
+ */
 $config['paypal_currency'] = 'USD';
 
 /**
@@ -20,7 +20,7 @@ $config['paypal_currency'] = 'USD';
  * sandbox = Testing the code end-to-end
  * live    = Ready for production
  *
-*/
+ */
 $config['paypal_mode'] = 'sandbox';
 
 /**
@@ -30,7 +30,7 @@ $config['paypal_mode'] = 'sandbox';
  * Check your client id in:
  * https://developer.paypal.com/developer/applications
  *
-*/
+ */
 $config['paypal_userid'] = 'AeEKmkcWH_NGf5Uxkoos5ESv3fffSBnlC1b-BJTAUF2vP02Klwa_IXXzUKqtP1tGZHF_gCRPjNjyBo7V';
 
 /**
@@ -40,7 +40,7 @@ $config['paypal_userid'] = 'AeEKmkcWH_NGf5Uxkoos5ESv3fffSBnlC1b-BJTAUF2vP02Klwa_
  * Check your secret password in:
  * https://developer.paypal.com/developer/applications
  *
-*/
+ */
 $config['paypal_secretpass'] = 'EEaly2bYOVTbv1hsMPesPESGF-fFyFm_HMWij_0mFiiRAEibc-SdSeqCMPFlF0ziuzsZXNcBXxecsn2V';
 
 /**
@@ -49,5 +49,5 @@ $config['paypal_secretpass'] = 'EEaly2bYOVTbv1hsMPesPESGF-fFyFm_HMWij_0mFiiRAEib
  *
  * Write the symbol of currency used in paypal
  *
-*/
+ */
 $config['paypal_currency_symbol'] = '$';

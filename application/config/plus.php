@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Use the following page to create the necessary keys.
  * https://www.google.com/recaptcha/admin#list
  *
-*/
+ */
 $config['recaptcha_sitekey'] = '';
 
 /**
@@ -19,7 +19,7 @@ $config['recaptcha_sitekey'] = '';
  * Write the necessary information for use SMTP to use in recovery password
  * and account activation.
  *
-*/
+ */
 $config['smtp_host'] = '';
 $config['smtp_user'] = '';
 $config['smtp_pass'] = '';
@@ -32,7 +32,7 @@ $config['smtp_crypto'] = 'ssl';
  *
  * Write the necessary information to use in sending emails.
  *
-*/
+ */
 $config['email_settings_sender'] = '';
 $config['email_settings_sender_name'] = '';
 
@@ -45,7 +45,7 @@ $config['email_settings_sender_name'] = '';
  * TRUE  = Enable
  * FALSE = Disable
  *
-*/
+ */
 $config['account_activation_required'] = FALSE;
 
 /**
@@ -54,7 +54,7 @@ $config['account_activation_required'] = FALSE;
  *
  * Minimum gmlevel to access to admin sections.
  *
-*/
+ */
 $config['admin_access_level'] = '3';
 
 /**
@@ -63,7 +63,7 @@ $config['admin_access_level'] = '3';
  *
  * Minimum gmlevel to access to mod sections.
  *
-*/
+ */
 $config['mod_access_level'] = '2';
 
 /**
@@ -72,5 +72,5 @@ $config['mod_access_level'] = '2';
  *
  * Still not licensed? Generate at https://wow-cms.com/en/licenses
  *
-*/
+ */
 $config['license_plus'] = 'JPQOZ-GK0XI-6FOYT-FL94L';

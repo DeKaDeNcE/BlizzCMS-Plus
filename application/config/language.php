@@ -1,4 +1,4 @@
-<?php if(!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
   |--------------------------------------------------------------------------
@@ -16,18 +16,18 @@
   |
  */
 $config['supported_languages'] = array(
-  'es' => array(
-     'name' => 'Español',
-     'folder' => 'spanish',
-     'direction' => 'ltr',
-     'codes' => array('es', 'spanish', 'es_ES'),
-  ),
-  'en' => array(
-     'name' => 'English',
-     'folder' => 'english',
-     'direction' => 'ltr',
-     'codes' => array('en', 'english', 'en_US'),
-  )
+	'es' => array(
+		'name' => 'Español',
+		'folder' => 'spanish',
+		'direction' => 'ltr',
+		'codes' => array('es', 'spanish', 'es_ES'),
+	),
+	'en' => array(
+		'name' => 'English',
+		'folder' => 'english',
+		'direction' => 'ltr',
+		'codes' => array('en', 'english', 'en_US'),
+	)
 );
 
 /*
@@ -77,6 +77,4 @@ $config['default_uri'] = '/';
   |    array('admin', 'auth', 'api')
   |
  */
-$config['special_uris'] = array(
-
-);
+$config['special_uris'] = array();

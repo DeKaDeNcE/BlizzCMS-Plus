@@ -10,7 +10,7 @@
  *
  * Default: TRUE
  *
-*/
+ */
 $config['parser_enabled'] = FALSE;
 
 /**
@@ -23,7 +23,7 @@ $config['parser_enabled'] = FALSE;
  *
  * Default: FALSE
  *
-*/
+ */
 $config['parser_body_enabled'] = FALSE;
 
 /**
@@ -34,7 +34,7 @@ $config['parser_body_enabled'] = FALSE;
  *
  * Default: ' | '
  *
-*/
+ */
 $config['title_separator'] = ' | ';
 
 /**
@@ -47,7 +47,7 @@ $config['title_separator'] = ' | ';
  *
  * Default: 'default'
  *
-*/
+ */
 $config['layout'] = 'layout';
 
 /**
@@ -60,7 +60,7 @@ $config['layout'] = 'layout';
  *
  * Default: ''
  *
-*/
+ */
 $config['theme'] = config_item('theme_name');
 
 /**
@@ -71,7 +71,7 @@ $config['theme'] = config_item('theme_name');
  *
  * Default: array(APPPATH.'themes/' => '../themes/')
  *
-*/
+ */
 $config['theme_locations'] = array(
-	APPPATH.'themes/'
+	APPPATH . 'themes/'
 );
