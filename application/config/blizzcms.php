@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * Write the name of your website this will appear by default.
  *
- */
+*/
 $config['website_name'] = 'localhost';
 
 /**
@@ -16,7 +16,7 @@ $config['website_name'] = 'localhost';
  *
  * http://php.net/manual/en/timezones.php
  *
- */
+*/
 $config['timezone'] = 'Europe/Madrid';
 
 /**
@@ -25,7 +25,7 @@ $config['timezone'] = 'Europe/Madrid';
  *
  * 1 = Enable | 0 = Disable
  *
- */
+*/
 $config['maintenance_mode'] = '0';
 
 /**
@@ -34,7 +34,7 @@ $config['maintenance_mode'] = '0';
  *
  * Write the invitation of your discord channel.
  *
- */
+*/
 $config['discord_invitation'] = '213123';
 
 /**
@@ -43,18 +43,18 @@ $config['discord_invitation'] = '213123';
  *
  * Write the realmlist used on your server to publish it on the website.
  *
- */
+*/
 $config['realmlist'] = 'localhsot';
 
 /**
  * Emulator Supported
- *
+ * 
  * true = Legacy Emulator (https://github.com/The-Cataclysm-Preservation-Project/TrinityCore)
  * false = Disabled this feature (BlizzCMS - Old)
- *
+ * 
  */
 
-$config['emulator_legacy'] = false;
+ $config['emulator_legacy'] = false;
 
 /**
  *
@@ -71,7 +71,7 @@ $config['emulator_legacy'] = false;
  * 7 = Legion
  * 8 = Battle for Azeroth
  *
- */
+*/
 $config['expansion'] = '8';
 
 /**
@@ -83,7 +83,7 @@ $config['expansion'] = '8';
  * The css must also have the same name
  * Default: default
  *
- */
+*/
 $config['theme_name'] = 'default';
 
 /**
@@ -92,7 +92,7 @@ $config['theme_name'] = 'default';
  *
  * Write the links for redirect to your social networks.
  *
- */
+*/
 $config['social_facebook'] = '';
 $config['social_twitter'] = '';
 $config['social_youtube'] = '';
@@ -103,5 +103,5 @@ $config['social_youtube'] = '';
  *
  * Warning: Don't change this configuration.
  *
- */
+*/
 $config['migrate_status'] = '0';
