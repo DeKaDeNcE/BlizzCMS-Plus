@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 /**
  * BlizzCMS
  *
@@ -35,52 +34,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @since   Version 1.0.1
  * @filesource
  */
-class Vote extends MX_Controller
-{
 
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->model('vote_model');
+class Vote extends MX_Controller {
 
-		if (!ini_get('date.timezone'))
-			date_default_timezone_set($this->config->item('timezone'));
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('vote_model');
 
-		if (!$this->wowgeneral->getMaintenance())
-			redirect(base_url('maintenance'), 'refresh');
+        if (!ini_get('date.timezone'))
+           date_default_timezone_set($this->config->item('timezone'));
 
-		if (!$this->wowmodule->getVoteStatus())
-			redirect(base_url(), 'refresh');
+        if (!$this->wowgeneral->getMaintenance())
+            redirect(base_url('maintenance'),'refresh');
 
-		if (!$this->wowauth->isLogged())
-			redirect(base_url('login'), 'refresh');
-	}
+        if (!$this->wowmodule->getVoteStatus())
+            redirect(base_url(),'refresh');
 
-	public function index()
-	{
-		$data = array(
-			'pagetitle' => $this->lang->line('tab_vote'),
-			'voteList' => $this->vote_model->getVotes(),
-		);
+        if (!is_logged())
+            redirect(base_url('login'),'refresh');
+    }
 
-		$this->template->build('index', $data);
-	}
+    public function index()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('tab_vote'),
+            'voteList' => $this->vote_model->getVotes(),
+        );
 
-	public function voteNow($id)
-	{
-		echo $this->vote_model->voteNow($id);
-	}
+        $this->template->build('index', $data);
+    }
 
-	public function voteNowCount()
-	{
-		$id = $this->input->post('value', TRUE);
-		$seconds = $this->vote_model->getVoteTime($id);
-		echo $this->vote_model->getCountDownHTML($id, $seconds);
-	}
+    public function voteNow($id)
+    {
+        echo $this->vote_model->voteNow($id);
+    }
 
-	public function voteCallURL()
-	{
-		$id = $this->input->post('value', TRUE);
-		echo $this->vote_model->getVoteUrl($id);
-	}
+    public function voteNowCount()
+    {
+        $id = $this->input->post('value', TRUE);
+        $seconds = $this->vote_model->getVoteTime($id);
+        echo $this->vote_model->getCountDownHTML($id, $seconds);
+    }
+
+    public function voteCallURL()
+    {
+        $id = $this->input->post('value', TRUE);
+        echo $this->vote_model->getVoteUrl($id);
+    }
 }

@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 /**
  * BlizzCMS
  *
@@ -35,60 +34,60 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @since   Version 1.0.1
  * @filesource
  */
-class News extends MX_Controller
-{
 
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->model('news_model');
+class News extends MX_Controller {
 
-		if (!ini_get('date.timezone'))
-			date_default_timezone_set($this->config->item('timezone'));
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('news_model');
 
-		if (!$this->wowgeneral->getMaintenance())
-			redirect(base_url('maintenance'), 'refresh');
+        if(!ini_get('date.timezone'))
+           date_default_timezone_set($this->config->item('timezone'));
 
-		if (!$this->wowmodule->getNewsStatus())
-			redirect(base_url(), 'refresh');
-	}
+        if(!$this->wowgeneral->getMaintenance())
+            redirect(base_url('maintenance'),'refresh');
 
-	public function article($id)
-	{
-		$this->load->model('forum/forum_model');
+        if (!$this->wowmodule->getNewsStatus())
+            redirect(base_url(),'refresh');
+    }
 
-		if ($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-			$tiny = $this->wowgeneral->tinyEditor('Admin');
-		else
-			$tiny = $this->wowgeneral->tinyEditor('User');
+    public function article($id)
+    {
+        $this->load->model('forum/forum_model');
 
-		$data = array(
-			'idlink' => $id,
-			'pagetitle' => $this->lang->line('tab_news'),
-			'lang' => $this->lang->lang(),
-			'tiny' => $tiny
-		);
+        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
+        else
+            $tiny = $this->wowgeneral->tinyEditor('User');
 
-		$this->template->build('article', $data);
-	}
+        $data = array(
+            'idlink' => $id,
+            'pagetitle' => $this->lang->line('tab_news'),
+            'lang' => $this->lang->lang(),
+            'tiny' => $tiny
+        );
 
-	public function reply()
-	{
-		if (!$this->wowauth->isLogged())
-			redirect(base_url(), 'refresh');
+        $this->template->build('article', $data);
+    }
 
-		$ssesid = $this->session->userdata('wow_sess_id');
-		$newsid = $this->input->post('news');
-		$reply = $_POST['reply'];
-		echo $this->news_model->insertComment($reply, $newsid, $ssesid);
-	}
+    public function reply()
+    {
+        if (!is_logged())
+            redirect(base_url(),'refresh');
 
-	public function deletereply()
-	{
-		if (!$this->wowauth->isLogged())
-			redirect(base_url(), 'refresh');
+        $ssesid = $this->session->userdata('wow_sess_id');
+        $newsid = $this->input->post('news');
+        $reply = $_POST['reply'];
+        echo $this->news_model->insertComment($reply, $newsid, $ssesid);
+    }
 
-		$id = $this->input->post('value');
-		echo $this->news_model->removeComment($id);
-	}
+    public function deletereply()
+    {
+        if (!is_logged())
+            redirect(base_url(),'refresh');
+
+        $id = $this->input->post('value');
+        echo $this->news_model->removeComment($id);
+    }
 }

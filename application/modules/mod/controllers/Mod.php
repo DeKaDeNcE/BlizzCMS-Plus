@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 /**
  * BlizzCMS
  *
@@ -35,84 +34,84 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @since   Version 1.0.1
  * @filesource
  */
-class Mod extends MX_Controller
-{
 
-	private $wowlocmod = '',
-		$wowlocref = '';
+class Mod extends MX_Controller {
 
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->model('mod_model');
-		$this->load->library('pagination');
+    private $wowlocmod = '',
+            $wowlocref = '';
 
-		if (!ini_get('date.timezone'))
-			date_default_timezone_set($this->config->item('timezone'));
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('mod_model');
+        $this->load->library('pagination');
 
-		if (!$this->wowauth->isLogged())
-			redirect(base_url(), 'refresh');
+        if(!ini_get('date.timezone'))
+           date_default_timezone_set($this->config->item('timezone'));
 
-		if (!$this->wowauth->getIsModerator($this->session->userdata('wow_sess_gmlevel')))
-			redirect(base_url(), 'refresh');
+        if(!is_logged())
+            redirect(base_url(),'refresh');
 
-		$this->template->set_theme('mod');
+        if(!$this->wowauth->getIsModerator($this->session->userdata('wow_sess_gmlevel')))
+            redirect(base_url(),'refresh');
 
-		$this->wowlocmod = base_url('application/themes/' . $this->template->get_theme() . '/');
-		$this->wowlocref = base_url('application/themes/' . config_item('theme_name') . '/');
-	}
+        $this->template->set_theme('mod');
 
-	public function index()
-	{
-		$data = array(
-			'pagetitle' => $this->lang->line('button_mod_panel'),
-		);
+        $this->wowlocmod = base_url('application/themes/'.$this->template->get_theme().'/');
+        $this->wowlocref = base_url('application/themes/'.config_item('theme_name').'/');
+    }
 
-		$this->template->build('index', $data);
-	}
+    public function index()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_mod_panel'),
+        );
 
-	public function queue()
-	{
-		$data = array(
-			'pagetitle' => $this->lang->line('button_mod_panel'),
-		);
+        $this->template->build('index', $data);
+    }
 
-		$this->template->build('queue/index', $data);
-	}
+    public function queue()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_mod_panel'),
+        );
 
-	public function reports()
-	{
-		$data = array(
-			'pagetitle' => $this->lang->line('button_mod_panel'),
-		);
+        $this->template->build('queue/index', $data);
+    }
 
-		$this->template->build('reports/index', $data);
-	}
+    public function reports()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_mod_panel'),
+        );
 
-	public function logs()
-	{
-		$data = array(
-			'pagetitle' => $this->lang->line('button_mod_panel'),
-		);
+        $this->template->build('reports/index', $data);
+    }
 
-		$this->template->build('logs/index', $data);
-	}
+    public function logs()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_mod_panel'),
+        );
 
-	public function bannings()
-	{
-		$data = array(
-			'pagetitle' => $this->lang->line('button_mod_panel'),
-		);
+        $this->template->build('logs/index', $data);
+    }
 
-		$this->template->build('bannings/index', $data);
-	}
+    public function bannings()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_mod_panel'),
+        );
 
-	public function warnings()
-	{
-		$data = array(
-			'pagetitle' => $this->lang->line('button_mod_panel'),
-		);
+        $this->template->build('bannings/index', $data);
+    }
 
-		$this->template->build('warnings/index', $data);
-	}
+    public function warnings()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_mod_panel'),
+        );
+
+        $this->template->build('warnings/index', $data);
+    }
 }

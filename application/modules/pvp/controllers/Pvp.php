@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 /**
  * BlizzCMS
  *
@@ -35,31 +34,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @since   Version 1.0.1
  * @filesource
  */
-class Pvp extends MX_Controller
-{
 
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->model('pvp_model');
+class Pvp extends MX_Controller {
 
-		if (!ini_get('date.timezone'))
-			date_default_timezone_set($this->config->item('timezone'));
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('pvp_model');
 
-		if (!$this->wowgeneral->getMaintenance())
-			redirect(base_url('maintenance'), 'refresh');
+        if(!ini_get('date.timezone'))
+           date_default_timezone_set($this->config->item('timezone'));
 
-		if (!$this->wowmodule->getPVPStatus())
-			redirect(base_url(), 'refresh');
-	}
+        if(!$this->wowgeneral->getMaintenance())
+            redirect(base_url('maintenance'),'refresh');
 
-	public function index()
-	{
-		$data = array(
-			'pagetitle' => $this->lang->line('tab_pvp_statistics'),
-			'realms' => $this->wowrealm->getRealms()->result()
-		);
+        if (!$this->wowmodule->getPVPStatus())
+            redirect(base_url(),'refresh');
+    }
 
-		$this->template->build('index', $data);
-	}
+    public function index()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('tab_pvp_statistics'),
+            'realms' => $this->wowrealm->getRealms()->result()
+        );
+
+        $this->template->build('index', $data);
+    }
 }

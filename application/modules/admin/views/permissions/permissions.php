@@ -12,18 +12,15 @@
 			<div class="uk-width-1-4@s">
 				<div class="uk-card uk-card-secondary">
 					<ul class="uk-nav uk-nav-default">
-						<li class="uk-active"><a href="<?= base_url('admin/permissions'); ?>"><i
-									class="fas fa-cog"></i> <?= $this->lang->line('section_rank_list'); ?></a></li>
-						<li><a href="<?= base_url('admin/permissions/create'); ?>"><i
-									class="fas fa-cog"></i> <?= $this->lang->line('section_rank_create'); ?></a></li>
+						<li class="uk-active"><a href="<?= base_url('admin/permissions'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('section_rank_list'); ?></a></li>
+						<li><a href="<?= base_url('admin/permissions/create'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('section_rank_create'); ?></a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="uk-width-3-4@s">
 				<div class="uk-card uk-card-default uk-margin-small">
 					<div class="uk-card-body">
-						<h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-text-center uk-margin-small">
-							<span><?= $this->lang->line('section_rank_list'); ?></span></h5>
+						<h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-text-center uk-margin-small"><span><?= $this->lang->line('section_rank_list'); ?></span></h5>
 						<table class="uk-table uk-table-hover uk-table-middle uk-table-divider uk-table-small">
 							<thead>
 							<tr>
@@ -32,17 +29,14 @@
 							</tr>
 							</thead>
 							<tbody>
-							<?php if (isset($listrank) && !empty($listrank)): ?>
-								<?php foreach ($listrank as $ranks): ?>
+							<?php if(isset($listrank) && !empty($listrank)): ?>
+								<?php foreach($listrank as $ranks): ?>
 									<tr>
 										<td class="uk-text-center"><?= $ranks->name ?></td>
 										<td>
 											<div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
-												<a href="<?= base_url('admin/permissions/manage/' . $ranks->id); ?>"
-												   class="uk-button uk-button-primary uk-margin-small-right"><i
-														class="fas fa-cog"></i></a>
-												<a href="<?= base_url('admin/permissions/delete/' . $ranks->id); ?>"
-												   class="uk-button uk-button-danger"><i class="fas fa-ban"></i></a>
+												<a href="<?= base_url('admin/permissions/manage/'.$ranks->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-cog"></i></a>
+												<a href="<?= base_url('admin/permissions/delete/'.$ranks->id); ?>" class="uk-button uk-button-danger"><i class="fas fa-ban"></i></a>
 											</div>
 										</td>
 									</tr>

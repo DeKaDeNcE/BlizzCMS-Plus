@@ -2,8 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_alter_users extends CI_Migration
-{
+class Migration_alter_users extends CI_Migration {
 
 	public function up()
 	{

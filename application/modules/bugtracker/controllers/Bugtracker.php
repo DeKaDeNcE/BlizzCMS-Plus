@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 /**
  * BlizzCMS
  *
@@ -35,96 +34,97 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @since   Version 1.0.1
  * @filesource
  */
-class Bugtracker extends MX_Controller
-{
 
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->model('bugtracker_model');
-		$this->load->config('bugtracker');
-		$this->load->library('pagination');
+class Bugtracker extends MX_Controller {
 
-		if (!ini_get('date.timezone'))
-			date_default_timezone_set($this->config->item('timezone'));
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('bugtracker_model');
+        $this->load->config('bugtracker');
+        $this->load->library('pagination');
 
-		if (!$this->wowgeneral->getMaintenance())
-			redirect(base_url('maintenance'), 'refresh');
+        if(!ini_get('date.timezone'))
+           date_default_timezone_set($this->config->item('timezone'));
 
-		if (!$this->wowmodule->getBugtrackerStatus())
-			redirect(base_url(), 'refresh');
+        if(!$this->wowgeneral->getMaintenance())
+            redirect(base_url('maintenance'),'refresh');
 
-		if (!$this->wowauth->isLogged())
-			redirect(base_url('login'), 'refresh');
-	}
+        if (!$this->wowmodule->getBugtrackerStatus())
+            redirect(base_url(),'refresh');
 
-	public function index()
-	{
-		$data = array(
-			'pagetitle' => $this->lang->line('tab_bugtracker'),
-		);
+        if(!is_logged())
+            redirect(base_url('login'),'refresh');
+    }
 
-		$config['total_rows'] = $this->bugtracker_model->getAllBugs();
-		$data['total_count'] = $config['total_rows'];
-		$config['suffix'] = '';
+    public function index()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('tab_bugtracker'),
+        );
 
-		if ($config['total_rows'] > 0) {
-			$page_number = $this->uri->segment(3);
-			$config['base_url'] = base_url() . 'bugtracker/';
+        $config['total_rows'] = $this->bugtracker_model->getAllBugs();
+        $data['total_count'] = $config['total_rows'];
+        $config['suffix'] = '';
 
-			if (empty($page_number))
-				$page_number = 1;
+        if ($config['total_rows'] > 0)
+        {
+            $page_number = $this->uri->segment(3);
+            $config['base_url'] = base_url().'bugtracker/';
 
-			$offset = ($page_number - 1) * $this->pagination->per_page;
-			$this->bugtracker_model->setPageNumber($this->pagination->per_page);
-			$this->bugtracker_model->setOffset($offset);
-			$this->pagination->initialize($config);
+            if (empty($page_number))
+                $page_number = 1;
 
-			$data['pagination_links'] = $this->pagination->create_links();
-			$data['bugtrackerList'] = $this->bugtracker_model->bugtrackerList();
-		}
+            $offset = ($page_number - 1) * $this->pagination->per_page;
+            $this->bugtracker_model->setPageNumber($this->pagination->per_page);
+            $this->bugtracker_model->setOffset($offset);
+            $this->pagination->initialize($config);
 
-		$this->template->build('index', $data);
-	}
+            $data['pagination_links'] = $this->pagination->create_links();
+            $data['bugtrackerList'] = $this->bugtracker_model->bugtrackerList();
+        }
 
-	public function newreport()
-	{
-		if ($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-			$tiny = $this->wowgeneral->tinyEditor('Admin');
-		else
-			$tiny = $this->wowgeneral->tinyEditor('User');
+        $this->template->build('index', $data);
+    }
 
-		$data = array(
-			'pagetitle' => $this->lang->line('tab_bugtracker'),
-			'lang' => $this->lang->lang(),
-			'tiny' => $tiny,
-		);
+    public function newreport()
+    {
+        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
+        else
+            $tiny = $this->wowgeneral->tinyEditor('User');
 
-		$this->template->build('new_report', $data);
-	}
+        $data = array(
+            'pagetitle' => $this->lang->line('tab_bugtracker'),
+            'lang' => $this->lang->lang(),
+            'tiny' => $tiny,
+        );
 
-	public function report($id)
-	{
-		if (empty($id) || is_null($id) || $id == '0')
-			redirect(base_url(), 'refresh');
+        $this->template->build('new_report', $data);
+    }
 
-		if (!$this->wowmodule->getBugtrackerStatus())
-			redirect(base_url(), 'refresh');
+    public function report($id)
+    {
+        if (empty($id) || is_null($id) || $id == '0')
+            redirect(base_url(),'refresh');
 
-		$data = array(
-			'idlink' => $id,
-			'pagetitle' => $this->lang->line('tab_bugtracker'),
-		);
+        if (!$this->wowmodule->getBugtrackerStatus())
+            redirect(base_url(),'refresh');
 
-		$this->template->build('report', $data);
-	}
+        $data = array(
+            'idlink' => $id,
+            'pagetitle' => $this->lang->line('tab_bugtracker'),
+        );
 
-	public function create()
-	{
-		$title = $this->input->post('title');
-		$description = $_POST['description'];
-		$type = $this->input->post('type');
-		$priority = $this->input->post('priority');
-		echo $this->bugtracker_model->insertIssue($title, $description, $type, $priority);
-	}
+        $this->template->build('report', $data);
+    }
+
+    public function create()
+    {
+        $title = $this->input->post('title');
+        $description = $_POST['description'];
+        $type = $this->input->post('type');
+        $priority = $this->input->post('priority');
+        echo $this->bugtracker_model->insertIssue($title, $description, $type, $priority);
+    }
 }

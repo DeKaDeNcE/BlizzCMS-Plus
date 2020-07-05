@@ -35,62 +35,62 @@
  **/
 class MX_Lang extends CI_Lang
 {
-	/**
-	 * [load description]
-	 *
-	 * @method load
-	 *
-	 * @param  [type]  $langfile   [description]
-	 * @param string $lang [description]
-	 * @param boolean $return [description]
-	 * @param boolean $add_suffix [description]
-	 * @param string $alt_path [description]
-	 * @param string $_module [description]
-	 *
-	 * @return [type]              [description]
-	 */
-	public function load($langfile, $lang = '', $return = false, $add_suffix = true, $alt_path = '', $_module = '')
-	{
-		if (is_array($langfile)) {
-			foreach ($langfile as $_lang) {
-				$this->load($_lang);
-			}
-			return $this->language;
-		}
+    /**
+     * [load description]
+     *
+     * @method load
+     *
+     * @param  [type]  $langfile   [description]
+     * @param  string  $lang       [description]
+     * @param  boolean $return     [description]
+     * @param  boolean $add_suffix [description]
+     * @param  string  $alt_path   [description]
+     * @param  string  $_module    [description]
+     *
+     * @return [type]              [description]
+     */
+    public function load($langfile, $lang = '', $return = false, $add_suffix = true, $alt_path = '', $_module = '')
+    {
+        if (is_array($langfile)) {
+            foreach ($langfile as $_lang) {
+                $this->load($_lang);
+            }
+            return $this->language;
+        }
 
-		$deft_lang = CI::$APP->config->item('language');
-		$idiom = ($lang === '') ? $deft_lang : $lang;
+        $deft_lang = CI::$APP->config->item('language');
+        $idiom = ($lang === '') ? $deft_lang : $lang;
 
-		if (in_array($langfile . '_lang' . EXT, $this->is_loaded, true)) {
-			return $this->language;
-		}
+        if (in_array($langfile.'_lang'.EXT, $this->is_loaded, true)) {
+            return $this->language;
+        }
 
-		$_module or $_module = CI::$APP->router->fetch_module();
+        $_module or $_module = CI::$APP->router->fetch_module();
 
-		// Backward function
-		// Before PHP 7.1.0, list() only worked on numerical arrays and assumes the numerical indices start at 0.
-		if (version_compare(phpversion(), '7.1', '<')) {
-			// php version isn't high enough
-			list($path, $_langfile) = Modules::find($langfile . '_lang', $_module, 'language/' . $idiom . '/');
-		} else {
-			[$path, $_langfile] = Modules::find($langfile . '_lang', $_module, 'language/' . $idiom . '/');
-		}
+        // Backward function
+        // Before PHP 7.1.0, list() only worked on numerical arrays and assumes the numerical indices start at 0.
+        if (version_compare(phpversion(), '7.1', '<')) {
+            // php version isn't high enough
+            list($path, $_langfile) = Modules::find($langfile.'_lang', $_module, 'language/'.$idiom.'/');
+        } else {
+            [$path, $_langfile] = Modules::find($langfile.'_lang', $_module, 'language/'.$idiom.'/');
+        }
 
-		if ($path === false) {
-			if ($lang = parent::load($langfile, $lang, $return, $add_suffix, $alt_path)) {
-				return $lang;
-			}
-		} else {
-			if ($lang = Modules::load_file($_langfile, $path, 'lang')) {
-				if ($return) {
-					return $lang;
-				}
-				$this->language = array_merge($this->language, $lang);
-				$this->is_loaded[] = $langfile . '_lang' . EXT;
-				unset($lang);
-			}
-		}
+        if ($path === false) {
+            if ($lang = parent::load($langfile, $lang, $return, $add_suffix, $alt_path)) {
+                return $lang;
+            }
+        } else {
+            if ($lang = Modules::load_file($_langfile, $path, 'lang')) {
+                if ($return) {
+                    return $lang;
+                }
+                $this->language = array_merge($this->language, $lang);
+                $this->is_loaded[] = $langfile.'_lang'.EXT;
+                unset($lang);
+            }
+        }
 
-		return $this->language;
-	}
+        return $this->language;
+    }
 }

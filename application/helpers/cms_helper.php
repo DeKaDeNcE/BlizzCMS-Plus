@@ -2,10 +2,10 @@
 /**
  * BlizzCMS
  *
- * @author    WoW-CMS
- * @copyright    Copyright (c) 2019-2020, WoW-CMS (https://wow-cms.com/)
- * @license    http://opensource.org/licenses/MIT	MIT License
- * @link    https://wow-cms.com
+ * @author	WoW-CMS
+ * @copyright	Copyright (c) 2019-2020, WoW-CMS (https://wow-cms.com/)
+ * @license	http://opensource.org/licenses/MIT	MIT License
+ * @link	https://wow-cms.com
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -21,7 +21,6 @@ if (!function_exists('is_logged')) {
 		$CI = &get_instance();
 		return $CI->wowauth->isLogged();
 	}
-
 }
 
 
