@@ -79,6 +79,10 @@ class Admin extends MX_Controller {
 	 */
 	public function managesettings()
 	{
+		if (!is_authorized('acp.settings')) {
+			redirect(base_url(),'refresh');
+		}
+
 		$data = array(
 			'pagetitle' => $this->lang->line('button_admin_panel'),
 			'lang' => $this->lang->lang()
@@ -89,6 +93,10 @@ class Admin extends MX_Controller {
 
 	public function updatesettings()
 	{
+		if (!is_authorized('acp.settings')) {
+			redirect(base_url(),'refresh');
+		}
+
 		$project = $this->input->post('project');
 		$timezone = $this->input->post('timezone');
 		$maintenance = $this->input->post('maintenance');
@@ -103,6 +111,10 @@ class Admin extends MX_Controller {
 
 	public function optionalsettings()
 	{
+		if (!is_authorized('acp.settings')) {
+			redirect(base_url(),'refresh');
+		}
+
 		$data = array(
 			'pagetitle' => $this->lang->line('button_admin_panel'),
 			'lang' => $this->lang->lang()
@@ -113,6 +125,10 @@ class Admin extends MX_Controller {
 
 	public function updateoptionalsettings()
 	{
+		if (!is_authorized('acp.settings')) {
+			redirect(base_url(),'refresh');
+		}
+
 		$adminlvl = $this->input->post('adminlvl');
 		$modlvl = $this->input->post('modlvl');
 		$recaptcha = $this->input->post('recaptcha');
@@ -129,6 +145,10 @@ class Admin extends MX_Controller {
 
 	public function seosettings()
 	{
+		if (!is_authorized('acp.settings')) {
+			redirect(base_url(),'refresh');
+		}
+
 		$data = array(
 			'pagetitle' => $this->lang->line('button_admin_panel'),
 			'lang' => $this->lang->lang()
@@ -139,6 +159,10 @@ class Admin extends MX_Controller {
 
 	public function updateseosettings()
 	{
+		if (!is_authorized('acp.settings')) {
+			redirect(base_url(),'refresh');
+		}
+
 		$meta = $this->input->post('meta');
 		$description = $this->input->post('description');
 		$keywords = $this->input->post('keywords');
@@ -149,10 +173,9 @@ class Admin extends MX_Controller {
 
 	public function modulesettings()
 	{
-		if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-			$tiny = $this->wowgeneral->tinyEditor('Admin');
-		else
-			$tiny = $this->wowgeneral->tinyEditor('User');
+		if (!is_authorized('acp.settings')) {
+			redirect(base_url(),'refresh');
+		}
 
 		$data = array(
 			'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -165,6 +188,10 @@ class Admin extends MX_Controller {
 
 	public function updatedonatesettings()
 	{
+		if (!is_authorized('acp.settings')) {
+			redirect(base_url(),'refresh');
+		}
+
 		$currency = $this->input->post('currency');
 		$mode = $this->input->post('mode');
 		$client = $this->input->post('client');
@@ -174,13 +201,21 @@ class Admin extends MX_Controller {
 
 	public function updatebugtrackersettings()
 	{
+		if (!is_authorized('acp.settings')) {
+			redirect(base_url(),'refresh');
+		}
+
 		$description = $this->input->post('description');
 		echo $this->admin_model->updateBugtrackerSettings($description);
 	}
 
     public function managemodules()
     {
-        $data = array(
+		if (!is_authorized('acp.settings')) {
+			redirect(base_url(),'refresh');
+		}
+
+		$data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
@@ -190,19 +225,29 @@ class Admin extends MX_Controller {
 
     public function enablemodule()
     {
-        $id = $this->input->post('value');
+		if (!is_authorized('acp.modules')) {
+			redirect(base_url(),'refresh');
+		}
+
+
+		$id = $this->input->post('value');
         echo $this->admin_model->enableSpecifyModule($id);
     }
 
     public function disablemodule()
     {
-        $id = $this->input->post('value');
+		if (!is_authorized('acp.modules')) {
+			redirect(base_url(),'refresh');
+		}
+
+
+		$id = $this->input->post('value');
         echo $this->admin_model->disableSpecifyModule($id);
     }
 
     public function cmsmanage()
     {
-        $data = array(
+		$data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
@@ -212,7 +257,7 @@ class Admin extends MX_Controller {
 
     public function updatecms()
     {
-        echo $this->update_model->checkUpdates();
+		echo $this->update_model->checkUpdates();
     }
 
     /**
@@ -220,7 +265,11 @@ class Admin extends MX_Controller {
      */
     public function accounts()
     {
-        $data = array(
+		if (!is_authorized('acp.users')) {
+			redirect(base_url(),'refresh');
+		}
+
+		$data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
         );
 
@@ -250,6 +299,10 @@ class Admin extends MX_Controller {
 
     public function accountmanage($id)
     {
+		if (!is_authorized('acp.users')) {
+			redirect(base_url(),'refresh');
+		}
+
         if (is_null($id) || empty($id))
             redirect(base_url(),'refresh');
 
@@ -267,6 +320,10 @@ class Admin extends MX_Controller {
 
     public function accountdonatelogs($id)
     {
+		if (!is_authorized('acp.users')) {
+			redirect(base_url(),'refresh');
+		}
+
         if (is_null($id) || empty($id))
             redirect(base_url(),'refresh');
 
@@ -1412,6 +1469,7 @@ class Admin extends MX_Controller {
 
 		$this->template->build('permissions/viewpermission', $data);
 	}
+
 
     public function checkSoap()
     {

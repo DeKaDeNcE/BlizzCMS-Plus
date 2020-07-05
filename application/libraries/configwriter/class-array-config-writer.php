@@ -326,7 +326,7 @@ class Array_Config_Writer {
      * You can call Array_Config_Writer::write() as many times as required
      * before calling this method
      * 
-     * @return \Array_Config_Writer
+     * @return Array_Config_Writer
      */
     public function save()
     {

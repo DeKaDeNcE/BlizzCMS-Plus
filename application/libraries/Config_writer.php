@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * 
  * @param string $file Absolute path to config file , default to the main config file
  * @param string $variable_name The name of varible(array) that holds items 
- * @return \Array_Config_Writer
+ * @return Array_Config_Writer
  */
 
 require_once APPPATH.'libraries/configwriter/class-array-config-writer.php';
