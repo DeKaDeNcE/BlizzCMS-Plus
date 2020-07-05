@@ -135,7 +135,7 @@ class User extends MX_Controller {
 
     public function logout()
     {
-        $this->wowauth->logout();
+		logout();
     }
 
     public function recovery()

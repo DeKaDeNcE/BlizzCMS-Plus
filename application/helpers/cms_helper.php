@@ -19,10 +19,27 @@ if (!function_exists('is_logged')) {
 	function is_logged()
 	{
 		$CI = &get_instance();
-		return $CI->wowauth->isLogged();
+		if ($CI->session->userdata('wow_sess_username'))
+			return true;
+		else
+			return false;
 	}
 }
 
+/**
+ * Check if user has logout
+ *
+ * @return boolean
+ */
+if (!function_exists('logout')) {
+
+	function logout()
+	{
+		$CI = &get_instance();
+		$CI->session->sess_destroy();
+		redirect(base_url(),'refresh');
+	}
+}
 
 /**
  * Check if user or group has authorization

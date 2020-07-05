@@ -171,24 +171,10 @@ class Auth_model extends CI_Model {
             return false;
     }
 
-    public function isLogged()
-    {
-        if ($this->session->userdata('wow_sess_username'))
-            return true;
-        else
-            return false;
-    }
-
     public function sessionConnect($data)
     {
         $this->session->set_userdata($data);
         return true;
-    }
-
-    public function logout()
-    {
-        $this->session->sess_destroy();
-        redirect(base_url(),'refresh');
     }
 
     public function Battlenet($email, $password)
