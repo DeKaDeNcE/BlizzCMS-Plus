@@ -22,7 +22,7 @@ class Home_model extends CI_Model {
         $invitation = $this->config->item('discord_invitation');
         error_reporting(0);
 
-        if ($this->wowmodule->getDiscordStatus() && strlen($invitation) == 7)
+        if ($this->wowmodule->getModule(1) && strlen($invitation) == 7)
         {
             $discordapi = $this->cache->file->get('discordapi');
 

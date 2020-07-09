@@ -51,7 +51,7 @@ class User extends MX_Controller {
 
     public function login()
     {
-        if (!$this->wowmodule->getLoginStatus())
+        if (!$this->wowmodule->getModule(6))
             redirect(base_url(),'refresh');
 
         if (is_logged())
@@ -109,7 +109,7 @@ class User extends MX_Controller {
         if (!$this->wowgeneral->getMaintenance())
             redirect(base_url('maintenance'),'refresh');
 
-        if (!$this->wowmodule->getRegisterStatus())
+        if (!$this->wowmodule->getModule(5))
             redirect(base_url(),'refresh');
 
         if (is_logged())
@@ -143,7 +143,7 @@ class User extends MX_Controller {
         if (!$this->wowgeneral->getMaintenance())
             redirect(base_url('maintenance'),'refresh');
 
-        if (!$this->wowmodule->getRecoveryStatus())
+        if (!$this->wowmodule->getModule(7))
             redirect(base_url(),'refresh');
 
         if (is_logged())
@@ -194,7 +194,7 @@ class User extends MX_Controller {
         if (!$this->wowgeneral->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->wowmodule->getUCPStatus())
+        if (!$this->wowmodule->getModule(8))
             redirect(base_url(),'refresh');
 
         if (!is_logged())

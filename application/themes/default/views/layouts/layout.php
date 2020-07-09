@@ -19,10 +19,10 @@
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
               <?php if (!is_logged()): ?>
-              <?php if($this->wowmodule->getRegisterStatus() == '1'): ?>
+              <?php if($this->wowmodule->getModule(5) == '1'): ?>
               <li class="uk-visible@m"><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i>&nbsp;<?= $this->lang->line('button_register'); ?></a></li>
               <?php endif; ?>
-              <?php if($this->wowmodule->getLoginStatus() == '1'): ?>
+              <?php if($this->wowmodule->getModule(6) == '1'): ?>
               <li class="uk-visible@m"><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= $this->lang->line('button_login'); ?></a></li>
               <?php endif; ?>
               <?php endif; ?>
@@ -39,13 +39,13 @@
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <?php if (is_logged()): ?>
-                    <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
+                    <?php if($this->wowmodule->getModule(8) == '1'): ?>
                     <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php if(is_authorized('mod')): ?>
                     <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= $this->lang->line('button_mod_panel'); ?></a></li>
                     <?php endif; ?>
-                    <?php if($this->wowmodule->getACPStatus() == '1'): ?>
+                    <?php if($this->wowmodule->getModule(9) == '1'): ?>
                     <?php if(is_authorized('acp')): ?>
                     <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                     <?php endif; ?>
@@ -148,18 +148,18 @@
               <?php endif; ?>
               <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
                 <?php if (!is_logged()): ?>
-                <?php if($this->wowmodule->getRegisterStatus() == '1'): ?>
+                <?php if($this->wowmodule->getModule(5) == '1'): ?>
                 <li><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></a></li>
                 <?php endif; ?>
-                <?php if($this->wowmodule->getLoginStatus() == '1'): ?>
+                <?php if($this->wowmodule->getModule(6) == '1'): ?>
                 <li><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a></li>
                 <?php endif; ?>
                 <?php endif; ?>
                 <?php if (is_logged()): ?>
-                <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
+                <?php if($this->wowmodule->getModule(8) == '1'): ?>
                 <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
                 <?php endif; ?>
-                <?php if($this->wowmodule->getACPStatus() == '1'): ?>
+                <?php if($this->wowmodule->getModule(9) == '1'): ?>
                 <?php if(is_authorized('acp')): ?>
                 <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                 <?php endif; ?>

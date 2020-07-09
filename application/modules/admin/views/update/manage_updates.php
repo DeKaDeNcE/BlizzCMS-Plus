@@ -78,6 +78,16 @@
                           <td class="uk-text-bold"><?= $this->lang->line('cms_loaded_extensions'); ?></td>
                           <td><?= $this->update_model->getPHPExtensions(); ?></td>
                         </tr>
+						<tr>
+							<td class="uk-text-bold">Check Soap</td>
+							<td>
+								<?php
+								foreach ($this->wowrealm->getRealms()->result() as $charsMultiRealm) {
+									echo $this->wowrealm->commandSoap('.server info', $charsMultiRealm->console_username, $charsMultiRealm->console_password, $charsMultiRealm->console_hostname, $charsMultiRealm->console_port, $charsMultiRealm->emulator).'<br>';
+								}
+								?>
+							</td>
+						</tr>
                       </tbody>
                     </table>
                   </div>
