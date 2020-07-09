@@ -72,6 +72,13 @@
                         <td>Off</td>
                       <?php } ?>
                     </tr>
+				    <tr>
+						<?php
+						foreach ($this->wowrealm->getRealms()->result() as $charsMultiRealm) {
+							echo $this->wowrealm->commandSoap('.server info', $charsMultiRealm->console_username, $charsMultiRealm->console_password, $charsMultiRealm->console_hostname, $charsMultiRealm->console_port, $charsMultiRealm->emulator).'<br>';
+						}
+						?>
+					</tr>
                   </tbody>
                 </table>
               </div>
