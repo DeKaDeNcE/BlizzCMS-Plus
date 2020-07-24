@@ -26,7 +26,7 @@ $config['timezone'] = 'Europe/Madrid';
  * 1 = Enable | 0 = Disable
  *
 */
-$config['maintenance_mode'] = '0';
+$config['maintenance_mode'] = '1';
 
 /**
  *

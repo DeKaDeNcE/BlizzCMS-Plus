@@ -50,24 +50,6 @@ $config['account_activation_required'] = FALSE;
 
 /**
  *
- * Administrator Access Level
- *
- * Minimum gmlevel to access to admin sections.
- *
-*/
-$config['admin_access_level'] = '3';
-
-/**
- *
- * Moderator Access Level
- *
- * Minimum gmlevel to access to mod sections.
- *
-*/
-$config['mod_access_level'] = '2';
-
-/**
- *
  * BlizzCMS Plus License
  *
  * Still not licensed? Generate at https://wow-cms.com/en/licenses

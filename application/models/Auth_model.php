@@ -28,7 +28,6 @@ class Auth_model extends CI_Model {
             'wow_sess_expansion'	=> $this->getExpansionID($id),
             'wow_sess_last_ip'   => $this->getLastIPID($id),
             'wow_sess_last_login'=> $this->getLastLoginID($id),
-            'wow_sess_gmlevel'   => $this->getRank($id),
             'logged_in' => TRUE
         );
 
@@ -141,16 +140,6 @@ class Auth_model extends CI_Model {
         return $this->auth->select('joindate')->where('id', $id)->get('account')->row('joindate');
     }
 
-    public function getRank($id)
-    {
-        $qq = $this->auth->select('gmlevel')->where('id', $id)->get('account_access');
-
-        if($qq->num_rows())
-            return $qq->row('gmlevel');
-        else
-            return '0';
-    }
-
 	public function getRankWeb($id)
 	{
 		$qq = $this->db->select('rank')->where('id', $id)->get('users');
@@ -210,42 +199,24 @@ class Auth_model extends CI_Model {
             'id' => $this->session->userdata('wow_sess_id'),
             'username' => $this->session->userdata('wow_sess_username'),
             'email' => $this->session->userdata('wow_sess_email'),
+            'rank' => 1,
             'joindate' => strtotime($this->getJoinDateID($this->session->userdata('wow_sess_id')))
         ));
 
         return true;
     }
 
-    public function getRankByLevel($gmlevel)
-    {
-        $qq = $this->auth->select('gmlevel')->where('id', $this->session->userdata('wow_sess_id'))->get('account_access');
-
-        $gmlevel = $this->db->select('comment')->where('permission', $qq->row('gmlevel'))->get('ranks_default');
-
-        if($gmlevel->num_rows())
-            return $gmlevel->row('comment');
-        else
-        {
-            return 'Player';
-        }
-    }
-
     public function getMaintenancePermission()
     {
-        $config = $this->config->item('mod_access_level');
+        $qq = $this->db->select('rank')->where('id', $this->session->userdata('wow_sess_id'))->get('users');
 
-        $qq = $this->auth->select('gmlevel')->where('id', $this->session->userdata('wow_sess_id'))->get('account_access');
 
-        if(!$qq->row('gmlevel'))
-            return false;
-        else
+        if(is_authorized('acp'))
         {
-            if($qq->row('gmlevel') >= $config)
-                return false;
-            else
-            {
-                return true;
-            }
+        	return true;
+        }
+        else {
+        	return false;
         }
     }
 }

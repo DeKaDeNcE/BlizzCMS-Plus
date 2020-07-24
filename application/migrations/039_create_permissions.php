@@ -48,7 +48,12 @@ class Migration_Create_permissions extends CI_Migration
 			array('id' => 112, 'permission' => 'ACP Modules', 'key' => 'acp.modules', 'category' => 'admin'),
 			array('id' => 113, 'permission' => 'ACP Changelogs', 'key' => 'acp.devlog', 'category' => 'admin'),
 			array('id' => 114, 'permission' => 'MOD CP', 'key' => 'mod', 'category' => 'mod'),
-			array('id' => 115, 'permission' => 'MOD Options', 'key' => 'mod.options', 'category' => 'mod')
+			array('id' => 115, 'permission' => 'MOD Options', 'key' => 'mod.options', 'category' => 'mod'),
+			array('id' => 116, 'permission' => 'MOD Forums Basic', 'key'  => 'mod.bforum', 'category' => 'mod' ),
+			array('id' => 117, 'permission' => 'MOD Forums', 'key'  => 'mod.forum', 'category' => 'mod' ),
+			array('id' => 118, 'permission' => 'MOD Warns', 'key'  => 'mod.warns', 'category' => 'mod' ),
+			array('id' => 119, 'permission' => 'User basic', 'key'  => 'user.basic', 'category' => 'player' ),
+			array('id' => 120, 'permission' => 'Guest basic', 'key'  => 'guest.basic', 'category' => 'guest' )
 		);
 		$this->db->insert_batch('permissions', $data);
 	}
