@@ -55,4 +55,4 @@ $config['account_activation_required'] = FALSE;
  * Still not licensed? Generate at https://wow-cms.com/en/licenses
  *
 */
-$config['license_plus'] = 'JPQOZ-GK0XI-6FOYT-FL94L';
+$config['license_plus'] = '';
