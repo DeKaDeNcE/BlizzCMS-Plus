@@ -80,6 +80,15 @@
                   </div>
                 </div>
               </div>
+			  <div class="uk-margin-small">
+				  <label class="uk-form-label"><?= $this->lang->line('placeholder_realm_emu'); ?></label>
+				  <div class="uk-form-controls">
+					  <select class="uk-select" id="realm_emulator">
+						  <option value="AC"><?= $this->lang->line('realm_azerothcore'); ?></option>
+						  <option value="TC"><?= $this->lang->line('realm_trinitycore'); ?></option>
+					  </select>
+				  </div>
+			  </div>
             </div>
             <div class="uk-margin-small">
               <button class="uk-button uk-button-primary uk-width-1-1" type="submit" name="button_realm"><i class="fas fa-check-circle"></i> <?= $this->lang->line('button_create'); ?></button>
@@ -103,6 +112,7 @@
         var chardb = $('#character_database').val();
         var charuser = $('#character_username').val();
         var charpass = $('#character_password').val();
+        var emulator = $('#realm_emulator').val();
         if(realmid == ''){
           $.amaran({
             'theme': 'awesome error',
@@ -122,7 +132,7 @@
         $.ajax({
           url:"<?= base_url($lang.'/admin/realms/add'); ?>",
           method:"POST",
-          data:{realmid, soaphost, soapport, soapuser, soappass, charhost, chardb, charuser, charpass},
+          data:{realmid, soaphost, soapport, soapuser, soappass, charhost, chardb, charuser, charpass, emulator},
           dataType:"text",
           beforeSend: function(){
             $.amaran({

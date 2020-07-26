@@ -270,3 +270,9 @@ $lang['cms_allow_fopen'] = 'allow_url_fopen';
 $lang['cms_allow_include'] = 'allow_url_include';
 $lang['cms_loaded_modules'] = 'Loaded Modules';
 $lang['cms_loaded_extensions'] = 'Loaded Extensions';
+
+/* REALM 1.0.7 */
+
+$lang['placeholder_realm_emu'] = 'Emulator';
+$lang['realm_azerothcore'] = 'AzerothCore';
+$lang['realm_trinitycore'] = 'TrinityCore';
