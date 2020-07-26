@@ -52,7 +52,7 @@ class Forum extends MX_Controller {
         if(!$this->wowgeneral->getMaintenance())
             redirect(base_url('maintenance'),'refresh');
 
-        if (!$this->wowmodule->getForumStatus())
+        if (!$this->wowmodule->getModule(11))
             redirect(base_url(),'refresh');
     }
 
@@ -70,7 +70,7 @@ class Forum extends MX_Controller {
         if (empty($id) || is_null($id))
             redirect(base_url('forum'),'refresh');
 
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+        if(!is_authorized('mod'))
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
@@ -99,7 +99,7 @@ class Forum extends MX_Controller {
         else
             redirect(base_url('forum'),'refresh');
 
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+		if(!is_authorized('mod'))
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
@@ -116,7 +116,7 @@ class Forum extends MX_Controller {
 
     public function newtopic($idlink)
     {
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+		if(!is_authorized('mod'))
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');

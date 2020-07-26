@@ -37,7 +37,7 @@
                   <span uk-icon="icon: commenting; ratio: 0.9"></span>&nbsp;<?= $this->forum_model->getComments($lists->id)->num_rows(); ?>
                 </td>
                 <td class="uk-width-small uk-text-center">
-                  <?php if($this->wowauth->getRank($lists->author) > 0): ?>
+                  <?php if($this->wowauth->getRankWeb($lists->author) > 1): ?>
                   <span class="topic-forum-staff"><?= $this->wowauth->getUsernameID($lists->author); ?></span>
                   <?php else: ?>
                   <span class="topic-forum-member"><?= $this->wowauth->getUsernameID($lists->author); ?></span>
@@ -68,7 +68,7 @@
                   <span uk-icon="icon: commenting; ratio: 0.9"></span>&nbsp;<?= $this->forum_model->getComments($lists->id)->num_rows(); ?>
                 </td>
                 <td class="uk-width-small uk-text-center">
-                  <?php if($this->wowauth->getRank($lists->author) > 0): ?>
+                  <?php if($this->wowauth->getRankWeb($lists->author) > 1): ?>
                   <span class="topic-forum-staff"><?= $this->wowauth->getUsernameID($lists->author); ?></span>
                   <?php else: ?>
                   <span class="topic-forum-member"><?= $this->wowauth->getUsernameID($lists->author); ?></span>
