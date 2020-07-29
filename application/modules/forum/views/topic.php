@@ -1,22 +1,4 @@
-<?php
-if (isset($_POST['button_editTopic'])):
-  $title = $_POST['edit_title'];
-  $description = $_POST['edit_description'];
-
-  if (isset($_POST['topic_locked']))
-    $locked = '1';
-  else
-    $locked = '0';
-
-  if (isset($_POST['topic_pinned']))
-    $pinned = '1';
-  else
-    $pinned = '0';
-
-  $this->forum_model->updateTopic($idlink, $title, $description, $locked, $pinned);
-endif; ?>
-
-    <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
+<section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
       <div class="uk-background-cover uk-height-small header-section"></div>
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
@@ -55,6 +37,12 @@ endif; ?>
                 <?php if($this->wowauth->getRankWeb($this->forum_model->getSpecifyPostAuthor($idlink)) > 1): ?>
                 <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
                 <?php endif; ?>
+				<hr>
+				<div class="uk-text-center">
+					<i class="far fa-thumbs-up uk-text-success"></i>
+					<i class="far fa-thumbs-down uk-text-danger"></i>
+					<i class="fas fa-exclamation-triangle uk-text-danger"></i>
+				</div>
               </div>
               <div class="uk-width-expand@s">
                 <p class="uk-text-small uk-text-meta uk-margin-remove"><?= date('F d Y - H:i A', $this->forum_model->getSpecifyPostDate($idlink)); ?></p>
@@ -62,6 +50,18 @@ endif; ?>
               </div>
             </div>
           </div>
+			<div class="uk-card-footer">
+				<div class="uk-grid uk-grid-small" data-uk-grid>
+					<div class="uk-width-1-6@s">
+					</div>
+					<div class="uk-width-1-2@s">
+						<!-- Signature -->
+					</div>
+					<div class="uk-width-1-3@s">
+						<!-- Option mods -->
+					</div>
+				</div>
+			</div>
         </div>
         <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-margin" data-uk-grid>
           <?php foreach ($this->forum_model->getComments($idlink)->result() as $commentss): ?>

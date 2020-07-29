@@ -70,7 +70,7 @@ class Forum extends MX_Controller {
         if (empty($id) || is_null($id))
             redirect(base_url('forum'),'refresh');
 
-        if(!is_authorized('mod'))
+        if(is_authorized('mod'))
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
@@ -99,7 +99,7 @@ class Forum extends MX_Controller {
         else
             redirect(base_url('forum'),'refresh');
 
-		if(!is_authorized('mod'))
+		if(is_authorized('mod'))
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
@@ -116,7 +116,7 @@ class Forum extends MX_Controller {
 
     public function newtopic($idlink)
     {
-		if(!is_authorized('mod'))
+		if(is_authorized('mod'))
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
@@ -130,6 +130,23 @@ class Forum extends MX_Controller {
 
         $this->template->build('new_topic', $data);
     }
+
+    public function editopic($idlink)
+	{
+		if(is_authorized('mod'))
+			$tiny = $this->wowgeneral->tinyEditor('Admin');
+		else
+			$tiny = $this->wowgeneral->tinyEditor('User');
+
+		$data = array(
+			'idlink' => $idlink,
+			'pagetitle' => $this->lang->line('tab_forum'),
+			'lang' => $this->lang->lang(),
+			'tiny' => $tiny,
+		);
+
+		$this->template->build('edit_topic', $data);
+	}
 
     public function reply()
     {

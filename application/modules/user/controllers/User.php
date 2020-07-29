@@ -175,7 +175,7 @@ class User extends MX_Controller {
         if (!$this->wowgeneral->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->wowmodule->getUCPStatus())
+		if (!$this->wowmodule->getModule(8))
             redirect(base_url(),'refresh');
 
         if (!is_logged())
@@ -236,4 +236,18 @@ class User extends MX_Controller {
         $avatar = $this->input->post('avatar');
         echo $this->user_model->changeAvatar($avatar);
     }
+
+    public function viewing_profile($id)
+	{
+
+		if (!is_logged())
+			redirect(base_url(),'refresh');
+
+		$data = array(
+			'idlink' => $id,
+			'pagetitle' => $this->lang->line('tab_forum'),
+		);
+
+		$this->template->build('profile', $data);
+	}
 }

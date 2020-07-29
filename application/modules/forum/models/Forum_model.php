@@ -124,8 +124,6 @@ class Forum_model extends CI_Model {
 
     public function updateTopic($idlink, $title, $description, $locked, $pinned)
     {
-        $date = $this->wowgeneral->getTimestamp();
-
         $data = array(
             'title' => $title,
             'content' => $description,

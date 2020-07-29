@@ -277,3 +277,8 @@ $lang['soap_send_body'] = '¡Gracias por comprar en nuestra tienda!';
 /*Email Lang*/
 $lang['email_password_recovery'] = 'Recuperación de contraseña';
 $lang['email_account_activation'] = 'Activación de cuenta';
+
+/* 1.0.7 */
+
+$lang['button_edit'] = 'Editar';
+$lang['profile_username'] = 'Bienvenido al perfil de ';
